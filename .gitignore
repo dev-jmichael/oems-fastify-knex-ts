@@ -1,0 +1,30 @@
+# Dependency directories
+node_modules/
+
+# Optional build or compiled directories
+dist/
+build/
+
+# Environment configuration files
+.env
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+temp/
+tmp/
+
+# MacOS system files
+.DS_Store
+
+# Cache files
+.cache/
+
+# Coverage directory used by tools like Istanbul
+coverage/
+
+# Lock files (uncomment if you decide to ignore them)
+# package-lock.json
+# yarn.lock

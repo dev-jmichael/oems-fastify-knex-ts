@@ -5,11 +5,11 @@ import { errorResponse } from "../common/dto/apiResponse";
 
 const questionBankRepository = new QuestionBankRepository(db);
 
-const createQuestionBank = async (title: string, createdBy: string): Promise<QuestionBank> => {
+const createQuestionBank = async (title: string, createdBy: string): Promise<Omit<QuestionBank, 'question_bank_id'>> => {
  
-    const questionBank: QuestionBank = { title: title, created_by: createdBy }
+    const questionBank: Omit<QuestionBank, 'question_bank_id'> = { title: title, created_by: createdBy }
 
-    const createdQuestionBank: QuestionBank = await questionBankRepository.save(questionBank)
+    const createdQuestionBank: Omit<QuestionBank, 'question_bank_id'> = await questionBankRepository.save(questionBank)
 
     return createdQuestionBank;
 }

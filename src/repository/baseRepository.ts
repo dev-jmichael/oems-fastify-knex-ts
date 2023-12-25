@@ -19,7 +19,7 @@ export class BaseRepository<T> {
         return this.db(this.tableName).where({ [this.primaryKey]: id }).first();
     }
 
-    async save(data: T): Promise<T> {
+    async save(data: Omit<T, 'question_bank_id'>): Promise<T> {
         const [newRecord] = await this.db(this.tableName).insert(data).returning('*');
         return newRecord;
     }

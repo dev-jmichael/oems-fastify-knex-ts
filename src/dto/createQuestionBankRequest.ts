@@ -1,4 +1,4 @@
 export interface CreateQuestionBankRequest {
     title: string;
-    createdBy: string;
+    created_by: string;
 }

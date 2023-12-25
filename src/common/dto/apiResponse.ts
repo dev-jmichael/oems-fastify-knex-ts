@@ -1,4 +1,4 @@
-export const successResponse = (statusCode: number, payload: Object, message?: string) => {
+export const successResponse = (statusCode: number, payload: Object | undefined, message?: string) => {
     return {
         statusCode: statusCode,
         message: message,

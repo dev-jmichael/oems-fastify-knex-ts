@@ -2,12 +2,13 @@ import db from "../config/db";
 import { QuestionBank } from "../models/questionBank";
 import { QuestionBankRepository } from "../repository/questionBankRepository";
 import { errorResponse } from "../common/dto/apiResponse";
+import { CreateQuestionBankRequest } from "../dto/createQuestionBankRequest";
 
 const questionBankRepository = new QuestionBankRepository(db);
 
-const createQuestionBank = async (title: string, createdBy: string): Promise<Omit<QuestionBank, 'question_bank_id'>> => {
+const createQuestionBank = async (questionBankRequest: CreateQuestionBankRequest): Promise<Omit<QuestionBank, 'question_bank_id'>> => {
  
-    const questionBank: Omit<QuestionBank, 'question_bank_id'> = { title: title, created_by: createdBy }
+    const questionBank: Omit<QuestionBank, 'question_bank_id'> = { ...questionBankRequest }
 
     const createdQuestionBank: Omit<QuestionBank, 'question_bank_id'> = await questionBankRepository.save(questionBank)
 

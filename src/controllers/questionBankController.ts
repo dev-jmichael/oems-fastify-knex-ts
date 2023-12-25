@@ -6,8 +6,8 @@ import { QuestionBank } from '../models/questionBank';
 
 export const createQuestionBank = async (request: FastifyRequest<{ Body: CreateQuestionBankRequest }>, reply: FastifyReply) => {
     try {
-        const { title, createdBy } = request.body;
-        const createdQuestionBank: Omit<QuestionBank, 'question_bank_id'> = await questionBankService.createQuestionBank(title, createdBy);
+        const questionBankRequest: CreateQuestionBankRequest = request.body;
+        const createdQuestionBank: Omit<QuestionBank, 'question_bank_id'> = await questionBankService.createQuestionBank(questionBankRequest);
         reply.status(201).send(successResponse(201, createdQuestionBank, 'Question bank created.'));
     } catch (error: any) {
         console.log(error)

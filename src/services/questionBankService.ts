@@ -3,6 +3,7 @@ import { QuestionBank } from "../models/questionBank";
 import { QuestionBankRepository } from "../repository/questionBankRepository";
 import { error } from "../common/dto/apiResponse";
 import { CreateQuestionBankRequest } from "../dto/createQuestionBankRequest";
+import { StatusCodes } from "http-status-codes";
 
 const questionBankRepository = new QuestionBankRepository(db);
 
@@ -19,7 +20,7 @@ const getQuestionBank = async (questionBankId: string): Promise<QuestionBank> =>
     
     if (!foundQuestionBank) {
         throw error(
-            404, 
+            StatusCodes.NOT_FOUND, 
             'Resource Not Found', 
             'The requested resource does not exist.', 
             'RESOURCE_NOT_FOUND'

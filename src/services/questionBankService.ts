@@ -5,18 +5,18 @@ import { errorResponse } from "../common/dto/apiResponse";
 
 const questionBankRepository = new QuestionBankRepository(db);
 
-const createQuestionBank = async (title: string, createdBy: string) => {
+const createQuestionBank = async (title: string, createdBy: string): Promise<QuestionBank> => {
  
     const questionBank: QuestionBank = { title: title, created_by: createdBy }
 
-    const createdQuestionBank = await questionBankRepository.save(questionBank)
+    const createdQuestionBank: QuestionBank = await questionBankRepository.save(questionBank)
 
     return createdQuestionBank;
 }
 
-const getQuestionBank = async (questionBankId: string) => {
+const getQuestionBank = async (questionBankId: string): Promise<QuestionBank | undefined> => {
 
-    const foundQuestionBank = await questionBankRepository.findById(questionBankId)
+    const foundQuestionBank: QuestionBank | undefined = await questionBankRepository.findById(questionBankId);
     
     if (!foundQuestionBank) {
         throw errorResponse(

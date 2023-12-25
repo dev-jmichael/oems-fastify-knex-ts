@@ -10,7 +10,7 @@ export const createQuestionBank = async (request: FastifyRequest<{ Body: CreateQ
         reply.status(201).send(successResponse(201, createdQuestionBank, 'Question bank created.'));
     } catch (error: any) {
         console.log(error)
-        reply.status(500).send(errorResponse(error.status, error.error, error.message, error.errorCode));
+        reply.status(error.statusCode || 500).send(error);
     }
 }
 
@@ -21,6 +21,6 @@ export const getQuestionBank = async (request: FastifyRequest<{ Params: { questi
         reply.status(200).send(successResponse(200, questionBank));
     } catch (error: any) {
         console.log(error)
-        reply.status(error.statusCode || 500).send(errorResponse(error.statusCode, error.error, error.message, error.errorCode));
+        reply.status(error.statusCode || 500).send(error);
     }
 }

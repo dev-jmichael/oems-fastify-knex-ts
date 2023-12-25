@@ -6,8 +6,8 @@ import { QuestionBank } from '../models/questionBank';
 
 export const createQuestionBank = async (request: FastifyRequest<{ Body: CreateQuestionBankRequest }>, reply: FastifyReply) => {
     try {
-        const questionBankRequest: CreateQuestionBankRequest = request.body;
-        const createdQuestionBank: Omit<QuestionBank, 'question_bank_id'> = await questionBankService.createQuestionBank(questionBankRequest);
+        const questionBankRequest = request.body;
+        const createdQuestionBank = await questionBankService.createQuestionBank(questionBankRequest);
 
         reply.status(201).send(successResponse(201, createdQuestionBank, 'Question bank created.'));
     } catch (error: any) {
@@ -19,8 +19,8 @@ export const createQuestionBank = async (request: FastifyRequest<{ Body: CreateQ
 export const getQuestionBank = async (request: FastifyRequest<{ Params: { questionBankId: string } }>, reply: FastifyReply) => {
     try {
         const { questionBankId } = request.params;
-        const questionBank: QuestionBank | undefined = await questionBankService.getQuestionBank(questionBankId);
-        
+        const questionBank = await questionBankService.getQuestionBank(questionBankId);
+
         reply.status(200).send(successResponse(200, questionBank));
     } catch (error: any) {
         console.log(error)

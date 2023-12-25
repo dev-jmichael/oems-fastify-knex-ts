@@ -6,16 +6,16 @@ import { CreateQuestionBankRequest } from "../dto/createQuestionBankRequest";
 
 const questionBankRepository = new QuestionBankRepository(db);
 
-const createQuestionBank = async (questionBankRequest: CreateQuestionBankRequest): Promise<Omit<QuestionBank, 'question_bank_id'>> => {
+const createQuestionBank = async (questionBankRequest: CreateQuestionBankRequest): Promise<QuestionBank> => {
     const questionBank: Omit<QuestionBank, 'question_bank_id'> = { ...questionBankRequest }
 
-    const createdQuestionBank: Omit<QuestionBank, 'question_bank_id'> = await questionBankRepository.save(questionBank)
+    const createdQuestionBank = await questionBankRepository.save(questionBank)
 
     return createdQuestionBank;
 }
 
-const getQuestionBank = async (questionBankId: string): Promise<QuestionBank | undefined> => {
-    const foundQuestionBank: QuestionBank | undefined = await questionBankRepository.findById(questionBankId);
+const getQuestionBank = async (questionBankId: string): Promise<QuestionBank> => {
+    const foundQuestionBank = await questionBankRepository.findById(questionBankId);
     
     if (!foundQuestionBank) {
         throw errorResponse(

@@ -1,22 +1,6 @@
-import Fastify, { FastifyInstance } from 'fastify'
-import questionBankRoutes from './routes/questionBankRoutes';
-import { createQuestionBankSchema, getQuestionBankSchema } from './routes/validation/questionBankValidator';
-import fastify from 'fastify';
+import buildServer from "./server";
 
-const server: FastifyInstance = Fastify({ 
-  logger: { //disable logger in production
-    transport: {
-      target: 'pino-pretty',
-    },
-  },
-});
-
-//Plugins
-server.register(questionBankRoutes, { prefix: '/api/v1' });
-
-//Validation schemas
-server.addSchema(createQuestionBankSchema);
-server.addSchema(getQuestionBankSchema);
+const server = buildServer();
 
 const start = async () => {
   try {

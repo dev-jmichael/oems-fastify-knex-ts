@@ -1,4 +1,4 @@
-export const successResponse = (statusCode: number, payload: Object | undefined, message?: string) => {
+export const success = (statusCode: number, payload: Object | undefined, message?: string) => {
     return {
         statusCode: statusCode,
         message: message,
@@ -6,7 +6,7 @@ export const successResponse = (statusCode: number, payload: Object | undefined,
     }
 }
 
-export const errorResponse = (statusCode: number, error: string, message: string, errorCode: string) => {
+export const error = (statusCode: number, error: string, message: string, errorCode: string) => {
     return {
         statusCode: statusCode,
         error: error,

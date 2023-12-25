@@ -1,7 +1,7 @@
 import db from "../config/db";
 import { QuestionBank } from "../models/questionBank";
 import { QuestionBankRepository } from "../repository/questionBankRepository";
-import { errorResponse } from "../common/dto/apiResponse";
+import { error } from "../common/dto/apiResponse";
 import { CreateQuestionBankRequest } from "../dto/createQuestionBankRequest";
 
 const questionBankRepository = new QuestionBankRepository(db);
@@ -18,7 +18,7 @@ const getQuestionBank = async (questionBankId: string): Promise<QuestionBank> =>
     const foundQuestionBank = await questionBankRepository.findById(questionBankId);
     
     if (!foundQuestionBank) {
-        throw errorResponse(
+        throw error(
             404, 
             'Resource Not Found', 
             'The requested resource does not exist.', 

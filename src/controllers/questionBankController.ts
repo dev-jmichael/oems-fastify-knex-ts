@@ -1,8 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import questionBankService from '../services/questionBankService';
 import { CreateQuestionBankRequest } from '../dto/createQuestionBankRequest';
-import { successResponse, errorResponse } from '../common/dto/apiResponse';
-import { QuestionBank } from '../models/questionBank';
+import { successResponse } from '../common/dto/apiResponse';
 
 export const createQuestionBank = async (request: FastifyRequest<{ Body: CreateQuestionBankRequest }>, reply: FastifyReply) => {
     try {

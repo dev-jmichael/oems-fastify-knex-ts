@@ -24,3 +24,11 @@ export const getQuestionBank = async (request: FastifyRequest<{ Params: { questi
         reply.status(error.statusCode || 500).send(error);
     }
 }
+
+/** 
+* TODO: getAllQuestionBanks()
+*
+* TODO: updateQuestionBankTitle()
+*
+* TODO: deleteQuestionBank()
+*/

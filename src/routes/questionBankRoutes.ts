@@ -1,5 +1,6 @@
 import { FastifyInstance } from 'fastify';
 import { createQuestionBank, getQuestionBank, getPaginatedQuestionBanks } from '../controllers/questionBankController';
+import { paginationHook } from '../hooks/paginationHook';
 
 export default async (fastify: FastifyInstance) => {
     fastify.post('/question-banks', {
@@ -14,5 +15,5 @@ export default async (fastify: FastifyInstance) => {
         },
         handler: getQuestionBank
     });
-    fastify.get('/question-banks', getPaginatedQuestionBanks);
+    fastify.get('/question-banks', { preHandler: paginationHook }, getPaginatedQuestionBanks);
 }

@@ -4,6 +4,7 @@ import { CreateQuestionBankRequest } from '../dto/createQuestionBankRequest';
 import { success } from '../common/dto/apiResponse';
 import { StatusCodes } from 'http-status-codes';
 import { PaginationQuery } from '../dto/paginationQuery';
+import { Pagination } from '../types/pagination';
 
 export const createQuestionBank = async (request: FastifyRequest<{ Body: CreateQuestionBankRequest }>, reply: FastifyReply) => {
     try {
@@ -31,7 +32,7 @@ export const getQuestionBank = async (request: FastifyRequest<{ Params: { questi
 
 export const getPaginatedQuestionBanks = async (request: FastifyRequest<{ Querystring: PaginationQuery }>, reply: FastifyReply) => {
     try {
-        const paginationQuery = request.query;
+        const paginationQuery = request.pagination;
         const paginatedQuestionBanks = await questionBankService.getPaginatedQuestionBanks(paginationQuery);
 
         reply.status(StatusCodes.OK).send(success(StatusCodes.OK, paginatedQuestionBanks));

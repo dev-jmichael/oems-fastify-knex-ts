@@ -1,6 +1,7 @@
 import Fastify, { FastifyInstance } from 'fastify'
 import questionBankRoutes from './routes/questionBankRoutes';
 import { createQuestionBankSchema, getQuestionBankSchema } from './routes/validation/questionBankValidator';
+import { paginationHook } from './hooks/paginationHook';
 
 const buildServer = () => {
     const server: FastifyInstance = Fastify({ 
@@ -17,6 +18,9 @@ const buildServer = () => {
     //Validation schemas
     server.addSchema(createQuestionBankSchema);
     server.addSchema(getQuestionBankSchema);
+
+    //Hooks
+    server.addHook('preHandler', paginationHook);
 
     return server;
 }

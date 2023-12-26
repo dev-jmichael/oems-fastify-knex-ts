@@ -6,6 +6,7 @@ import { CreateQuestionBankRequest } from "../dto/createQuestionBankRequest";
 import { StatusCodes } from "http-status-codes";
 import { PaginationQuery } from "../dto/paginationQuery";
 import { PaginatedResponse } from "../dto/paginatedResponse";
+import { DEFAULT_CURRENT_PAGE, DEFAULT_PAGE_SIZE } from "../constants/paginationConstants";
 
 const questionBankRepository = new QuestionBankRepository(db);
 
@@ -33,8 +34,8 @@ const getQuestionBank = async (questionBankId: string): Promise<QuestionBank> =>
 }
 
 const getPaginatedQuestionBanks = async (paginationQuery: PaginationQuery): Promise<PaginatedResponse> => {
-    const page = parseInt(paginationQuery.page) || 1;
-    const pageSize = parseInt(paginationQuery.pageSize) || 10;
+    const page = parseInt(paginationQuery.page) || DEFAULT_CURRENT_PAGE;
+    const pageSize = parseInt(paginationQuery.pageSize) || DEFAULT_PAGE_SIZE;
     const offset = (page - 1) * pageSize;
     const sortBy = paginationQuery.sortBy;
     const sortOrder = paginationQuery.sortOrder;

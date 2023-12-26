@@ -2,7 +2,7 @@ import { SortOrder } from "../types/sortOrder";
 
 export interface PaginationQuery {
     page: string;
-    pageSize: string;
+    pageCount: string;
     sortBy: string;
     sortOrder: SortOrder;
 }

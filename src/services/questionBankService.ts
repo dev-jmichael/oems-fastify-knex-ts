@@ -34,25 +34,25 @@ const getQuestionBank = async (questionBankId: string): Promise<QuestionBank> =>
 }
 
 const getPaginatedQuestionBanks = async (paginationQuery: PaginationQuery): Promise<PaginatedResponse> => {
-    const page = parseInt(paginationQuery.page) || DEFAULT_CURRENT_PAGE;
-    const pageSize = parseInt(paginationQuery.pageSize) || DEFAULT_PAGE_SIZE;
-    const offset = (page - 1) * pageSize;
+    const currentPage = parseInt(paginationQuery.page) || DEFAULT_CURRENT_PAGE;
+    const pageSize = parseInt(paginationQuery.pageCount) || DEFAULT_PAGE_SIZE;
+    const offset = (currentPage - 1) * pageSize;
     const sortBy = paginationQuery.sortBy;
     const sortOrder = paginationQuery.sortOrder;
 
     const paginatedQuestionBanks = await questionBankRepository.findAllPaginated(pageSize, offset, sortBy, sortOrder);
 
     const totalCountArr = await questionBankRepository.count();
-    const totalCount = totalCountArr.length > 0 ? totalCountArr[0].count : 0;
-    const totalPages = Math.ceil(totalCount / pageSize);
+    const totalItems = totalCountArr.length > 0 ? totalCountArr[0].count : 0;
+    const totalPages = Math.ceil(totalItems / pageSize);
 
     const response: PaginatedResponse = {
         data: paginatedQuestionBanks,
         pagination: {
-            page,
+            currentPage,
             pageSize,
             totalPages,
-            totalCount
+            totalItems
         }
     }
 

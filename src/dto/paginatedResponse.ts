@@ -1,9 +1,9 @@
 export interface PaginatedResponse {
     data: Object;
     pagination: {
-        page: number;
+        currentPage: number;
         pageSize: number;
         totalPages: number;
-        totalCount: number;
+        totalItems: number;
     }
 }

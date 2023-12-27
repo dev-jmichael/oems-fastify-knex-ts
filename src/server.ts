@@ -2,6 +2,7 @@ import Fastify, { FastifyInstance } from 'fastify'
 import questionBankRoutes from './routes/questionBankRoutes';
 import { createQuestionBankSchema, getQuestionBankSchema } from './routes/validation/questionBankValidator';
 import { paginationHook } from './hooks/paginationHook';
+import fastifyCors from '@fastify/cors';
 
 const buildServer = () => {
     const server: FastifyInstance = Fastify({ 
@@ -13,6 +14,7 @@ const buildServer = () => {
     });
       
     //Plugins
+    server.register(fastifyCors, { origin: 'http://localhost:5173' })
     server.register(questionBankRoutes, { prefix: '/api/v1' });
     
     //Validation schemas

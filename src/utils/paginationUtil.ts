@@ -1,6 +1,6 @@
 import { PaginatedResponse } from "../dto/response/paginatedResponse";
 
-export const buildPaginatedResponse = async <T>(
+export const buildPaginatedResponse = <T>(
     pageSize: number, 
     page: number, 
     paginatedData: T[], 

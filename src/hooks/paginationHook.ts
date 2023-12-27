@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest, HookHandlerDoneFunction } from "fastify";
 import { DEFAULT_CURRENT_PAGE, DEFAULT_PAGE_SIZE } from "../constants/paginationConstants";
-import { PaginationQuery } from '../dto/paginationQuery';
+import { PaginationQuery } from '../dto/request/paginationQuery';
 
 export const paginationHook = (request: FastifyRequest< { Querystring: PaginationQuery } >, reply: FastifyReply, done: HookHandlerDoneFunction): void => {
     const currentPage = parseInt(request.query.page) || DEFAULT_CURRENT_PAGE;

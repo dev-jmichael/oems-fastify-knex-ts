@@ -10,7 +10,7 @@ export const createQuestionBankSchema = {
             type: 'string'
         },
     },
-    required: ['title', 'created_by']
+    required: ['title', 'createdBy']
 };
 
 export const getQuestionBankSchema = {

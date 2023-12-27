@@ -1,9 +1,9 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import questionBankService from '../services/questionBankService';
-import { CreateQuestionBankRequest } from '../dto/createQuestionBankRequest';
+import { CreateQuestionBankRequest } from '../dto/request/createQuestionBankRequest';
 import { success } from '../common/dto/apiResponse';
 import { StatusCodes } from 'http-status-codes';
-import { PaginationQuery } from '../dto/paginationQuery';
+import { PaginationQuery } from '../dto/request/paginationQuery';
 import { Pagination } from '../types/pagination';
 
 export const createQuestionBank = async (request: FastifyRequest<{ Body: CreateQuestionBankRequest }>, reply: FastifyReply) => {

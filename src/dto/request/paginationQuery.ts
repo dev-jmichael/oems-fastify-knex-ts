@@ -1,4 +1,4 @@
-import { SortOrder } from "../types/sortOrder";
+import { SortOrder } from "../../types/sortOrder";
 
 export interface PaginationQuery {
     page: string;

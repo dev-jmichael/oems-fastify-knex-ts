@@ -1,18 +1,17 @@
-import { PaginatedResponse } from "../dto/paginatedResponse";
-import { QuestionBank } from "../models/questionBank";
+import { PaginatedResponse } from "../dto/response/paginatedResponse";
 
-export const buildPaginatedResponse = async (
+export const buildPaginatedResponse = async <T>(
     pageSize: number, 
     page: number, 
-    paginatedQuestionBanks: QuestionBank[], 
+    paginatedData: T[], 
     totalCount: {
         count: number;
     }[]) => {
     const totalItems = totalCount.length > 0 ? totalCount[0].count : 0;
     const totalPages = Math.ceil(totalItems / pageSize);
 
-    const response: PaginatedResponse = {
-        data: paginatedQuestionBanks,
+    const response: PaginatedResponse<T> = {
+        data: paginatedData,
         pagination: {
             page,
             pageSize,

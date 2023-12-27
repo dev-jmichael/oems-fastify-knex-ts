@@ -14,7 +14,7 @@ const buildServer = () => {
     });
       
     //Plugins
-    server.register(fastifyCors, { origin: 'http://localhost:5173' })
+    server.register(fastifyCors, { origin: 'http://localhost:3000' })
     server.register(questionBankRoutes, { prefix: '/api/v1' });
     
     //Validation schemas

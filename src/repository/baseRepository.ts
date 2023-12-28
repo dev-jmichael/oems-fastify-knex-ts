@@ -13,7 +13,7 @@ export class BaseRepository<T> {
         this.primaryKey = primaryKey;
     }
 
-    async findAllPaginated(pageSize: number, offset: number, sortBy: string = 'created_at', sortOrder: SortOrder): Promise<T[]> {
+    async findAllPaginated(pageSize: number, offset: number, sortBy: string = 'created_at', sortOrder: SortOrder = 'desc'): Promise<T[]> {
         return this.db(this.tableName).select('*').limit(pageSize).offset(offset).orderBy(sortBy, sortOrder);
     }
 

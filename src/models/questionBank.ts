@@ -18,6 +18,7 @@ export const toDto = (questionBankEntity: QuestionBank) => {
     return {
         questionBankId: questionBankEntity.question_bank_id,
         title: questionBankEntity.title,
-        createdBy: questionBankEntity.created_by
+        createdBy: questionBankEntity.created_by,
+        createdAt: questionBankEntity.created_at
     }
 }
